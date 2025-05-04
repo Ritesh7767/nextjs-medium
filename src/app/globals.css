@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@tailwind utilities;
+
+@layer components {
+    .btn {
+        @apply rounded-3xl bg-black py-2 px-3 text-white font-medium
+    }
+    .auth-title {
+        @apply text-2xl font-serif text-center
+    }
+}
