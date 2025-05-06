@@ -1,22 +1,19 @@
 "use client"
 
-import LandingFooter from "./components/LandingFooter";
-import LandingHero from "./components/LandingHero";
-import LandingPage from "./components/LandingHero";
-import LandingNav from "./components/LandingNav";
-import GetStarted from "./components/GetStarted";
-import { useState } from "react";
+import { signOut, useSession } from "next-auth/react";
+import LandingPage from "./pages/LandingPage";
+import HomePage from "./pages/HomePage";
 
 export default function Home() {
 
-  const [getStarted, setGetStarted] = useState(false)
-  const handleClick = () => setGetStarted(!getStarted)
+  // const session = useSession()
+  // console.log(session)
+
   return (
-    <div className="relative">
-      <LandingNav handleClick={handleClick}/>
-      <LandingHero/>
-      <LandingFooter/>
-      {getStarted && <GetStarted handleClick={handleClick} />}
-    </div>
-  );
+    <>
+      {/* {session.status == "authenticated" ? <HomePage/> : <LandingPage/>} */}
+      <HomePage/>
+    </>
+  )
+  
 }

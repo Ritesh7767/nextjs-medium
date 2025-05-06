@@ -8,4 +8,13 @@
     .auth-title {
         @apply text-2xl font-serif text-center
     }
+    .disclaimer-container {
+        @apply mt-28 w-1/2 m-auto text-center text-sm
+    }
+    .input {
+        @apply bg-slate-200 rounded-lg p-2 outline-none
+    }
+    .get-container {
+        @apply absolute top-0 bottom-0 left-0 right-0 bg-white
+    }
 }

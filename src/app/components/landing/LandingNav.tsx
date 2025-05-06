@@ -16,7 +16,7 @@ const LandingNav = ({handleClick}: {handleClick: () => void}) => {
                 <a href={"#"} className=''>Write</a>
               </div>
               <a href={"#"} className='hidden sm:block' >Sign in</a>
-              <button className='btn' onClick={handleClick} >Get started</button>
+              <button className='btn cursor-pointer' onClick={handleClick} >Get started</button>
             </nav>
           </nav>
         </div>

@@ -20,8 +20,8 @@ model User {
   username   String     @unique
   email      String     @unique
   password   String
-  fullname   String     @unique
-  gender     Gender
+  firstname  String     @unique
+  lastname   String
   Post       Post[]
   Followers  Follower[] @relation("follower")
   Followings Follower[] @relation("following")
@@ -33,6 +33,7 @@ model Post {
   id      String    @id @default(uuid())
   content String
   image   String?
+  createAt DateTime @default(now())
   ownerId String
   owner   User      @relation(fields: [ownerId], references: [id])
   Likes   Like[]

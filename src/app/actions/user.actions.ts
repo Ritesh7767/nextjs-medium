@@ -1,29 +1,35 @@
-import { prisma } from "@/lib/prisma"
+'use server'
+import { prisma } from "@/lib/prisma/prisma"
+import bcrypt from "bcryptjs"
+import { redirect } from "next/navigation"
 
-interface userDataInterface {
+export interface userDataInterface {
     [keyof: string]: string,
     profile: string,
     username: string,
     email: string,
     password: string,
-    fullname: string,
-    gender: "Male" | "Female" | "Others" | "None"
+    firstname: string,
+    lastname: string
 }
 
 export const register = async (data: FormData) => {
-    "user server"
     const userData: userDataInterface = {
         profile: "",
         username: "",
         email: "",
         password: "",
-        fullname: "",
-        gender: "None"
+        firstname: "" ,
+        lastname: "",
     }
 
+    
     for(let key in userData){
-        userData[key] = data.get(key)?.valueOf() as string
+        userData[key] = data.get(key) as string
     }
+    
+    userData.profile = `https://avatar.iran.liara.run/username?username=${userData.firstname}+${userData.lastname}`
+    userData.password = await bcrypt.hash(userData.password, 5)
 
     const existingUser = await prisma.user.findFirst({
         where: {
@@ -37,10 +43,8 @@ export const register = async (data: FormData) => {
     if(existingUser) throw new Error("User already exists")
 
     const user = await prisma.user.create({data: userData})
-
-    return user
+    console.log(user)
+    redirect("/")
 }
 
-export const login = async (data: FormData) => {
-    
-}
+// export const getUser = await 
