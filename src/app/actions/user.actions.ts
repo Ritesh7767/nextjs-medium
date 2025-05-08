@@ -1,4 +1,5 @@
 'use server'
+import { sessionValidator } from "@/lib/sessionValidator"
 import { prisma } from "@/lib/prisma/prisma"
 import bcrypt from "bcryptjs"
 import { redirect } from "next/navigation"
@@ -10,7 +11,8 @@ export interface userDataInterface {
     email: string,
     password: string,
     firstname: string,
-    lastname: string
+    lastname: string,
+    about: string
 }
 
 export const register = async (data: FormData) => {
@@ -21,6 +23,7 @@ export const register = async (data: FormData) => {
         password: "",
         firstname: "" ,
         lastname: "",
+        about: ""
     }
 
     
@@ -47,4 +50,40 @@ export const register = async (data: FormData) => {
     redirect("/")
 }
 
-// export const getUser = await 
+export const getAllUser = async (firstname: string) => {
+    await sessionValidator
+    return await prisma.user.findMany({
+        where: {
+            firstname
+        }
+    })
+}
+
+export const getUser = async (id: string) => {
+
+    await sessionValidator()
+    return await prisma.user.findUnique({
+        where: {
+            id
+        },
+        include: {
+            Followings: {
+              select: {
+                following: {
+                    select: {
+                        profile: true,
+                        firstname: true,
+                        lastname: true,
+                        about: true
+                    }
+                }
+              }  
+            },
+            _count: {
+                select: {
+                    Followers: true
+                }
+            }
+        }
+    })
+}

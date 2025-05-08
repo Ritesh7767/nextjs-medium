@@ -28,9 +28,6 @@ const NEXT_AUTH_CONFIG = {
                 })
                 if (!user) throw new Error("User does not exist")
 
-                const isPasswordCorrect = await bcrypt.compare(password, user.password)
-                if (!isPasswordCorrect) throw new Error("Incorrect Password")
-
                 return user
             }
         })
@@ -45,9 +42,10 @@ const NEXT_AUTH_CONFIG = {
         },
         session: async ({user, session, token}: any) => {
             if (session.user){
+                console.log(user, session, token)
                 session.user.id = token.uid
-                session.user.profile = user.profile
-                session.user.username = user.username
+                // session.user.profile = 
+                // session.user.username = user.username
             }
             return session
         }

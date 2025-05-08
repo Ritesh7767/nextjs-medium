@@ -1,85 +1,80 @@
-// "use server"
+import { getAllPost } from '@/app/actions/post.actions'
 import React from 'react'
 import { BsThreeDots } from 'react-icons/bs'
 import { CiBookmark, CiCircleMinus } from 'react-icons/ci'
 import { FaComment, FaPlus } from 'react-icons/fa'
 import { FaHandsClapping } from 'react-icons/fa6'
-import { MdOutlineBookmarkAdd } from 'react-icons/md'
 
-interface postInterface {
+interface ownerInterface {
     profile: string,
-    image: string
-    username: string,
+    firstname: string,
+    lastname: string
+}
+interface likeCommentInterface {
+    Likes: number,
+    Comment: number
+}
+interface postInterface {
     title: string,
-    description: string
+    subtitle: string,
+    image: string | null,
+    createAt: Date,
+    owner: ownerInterface,
+    _count: likeCommentInterface
+}
+const getPostData = async () => {
+    return await getAllPost()
 }
 
-const postData: postInterface[] = [
-    {
-        profile: "https://avatar.iran.liara.run/username?username=vivek+gupta",
-        image: "https://miro.medium.com/v2/resize:fit:2000/format:webp/1*UhE5xyQPEfCnu5vSGZTYNg.png",
-        username: "vivek7767",
-        title: "AI Engineering: A REALISTIC Roadmap for Beginners",
-        description: "It's going to take longer than 6 months"
-    },
-    {
-        profile: "https://avatar.iran.liara.run/username?username=vivek+gupta",
-        image: "https://miro.medium.com/v2/resize:fit:2000/format:webp/1*UhE5xyQPEfCnu5vSGZTYNg.png",
-        username: "vivek7767",
-        title: "AI Engineering: A REALISTIC Roadmap for Beginners",
-        description: "It's going to take longer than 6 months"
-    },
-    {
-        profile: "https://avatar.iran.liara.run/username?username=vivek+gupta",
-        image: "https://miro.medium.com/v2/resize:fit:2000/format:webp/1*UhE5xyQPEfCnu5vSGZTYNg.png",
-        username: "vivek7767",
-        title: "AI Engineering: A REALISTIC Roadmap for Beginners",
-        description: "It's going to take longer than 6 months"
-    },
-    {
-        profile: "https://avatar.iran.liara.run/username?username=vivek+gupta",
-        image: "https://miro.medium.com/v2/resize:fit:2000/format:webp/1*UhE5xyQPEfCnu5vSGZTYNg.png",
-        username: "vivek7767",
-        title: "AI Engineering: A REALISTIC Roadmap for Beginners",
-        description: "It's going to take longer than 6 months"
-    },
-]
-
 const Card = async () => {
+    
+    const postData = await getPostData()
+    console.log(postData)
+
   return (
     <section className='mt-7'>
             <div className=''>
             {   
-                postData.map((ele: postInterface, index: number) => {
-                    const {profile, image, username, title, description} = ele
+                postData?.map((ele: postInterface, index: number) => {
+                    const {title, subtitle, image, createAt, owner, _count} = ele
+                    const {firstname, lastname, profile} = owner
+                    const {Likes, Comment} = _count
+                    const date = new Date(createAt).toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "short"
+                    })
+
                     return (
                         <div className='px-5 border border-slate-100' key={index}>
                         <div className='flex items-center gap-2'>
                             <img src={profile} alt="profile image" className='w-8 h-8' />
-                            <p>{username}</p>
+                            <p>{firstname + " " + lastname}</p>
                         </div>
                         <div className='flex justify-between gap-4 mt-3'>
                             <div className='w-3/5'>
                                 <h2 className='font-bold text-xl'>{title}</h2>
-                                <p className='text-black/75 mt-1'>{description}</p>
+                                <p className='text-black/75 mt-1'>{subtitle}</p>
                             </div>
-                            <div className='flex-1'>
-                                <img src={image} alt="post image" className='object-cover'/>
-                            </div>
+                            {
+                                image && 
+                                        <div className='flex-1 flex justify-center items-center'>
+                                            <img src={image} alt="post image" className='h-32 object-contain'/>
+                                        </div>
+                            }
                         </div>
                         <div className='flex justify-between items-center mt-5 mb-9 sm:w-3/5 pr-4'>
                             <div className='flex gap-3 text-sm items-center sm:gap-5'>
                                 <div className='flex gap-2 items-center'>
                                     <FaPlus className='text-amber-400' />
-                                    <span>Apr 11</span>
+                                    <span>{date}</span>
                                 </div>
                                 <div className='flex gap-2'>
                                     <FaHandsClapping/>
-                                    <span>573</span>
+                                    <span>{Likes}</span>
                                 </div>
                                 <div className='flex gap-2'>
                                     <FaComment className=''/>
-                                    <span>9</span>
+                                    <span>{Comment}</span>
                                 </div>
                             </div>
                             <div className='flex gap-3 text-2xl'>

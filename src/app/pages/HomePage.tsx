@@ -3,12 +3,7 @@ import Navbar from '../components/home/Navbar'
 import Card from '../components/home/Card'
 
 const HomePage = () => {
-  return (
-    <div>
-        <Navbar/>
-        <Card/>
-    </div>
-  )
+  
 }
 
 export default HomePage

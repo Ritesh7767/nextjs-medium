@@ -7,13 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Gender {
-  Male
-  Female
-  Others
-  None
-}
-
 model User {
   id         String     @id @default(uuid())
   profile    String
@@ -22,6 +15,7 @@ model User {
   password   String
   firstname  String     @unique
   lastname   String
+  about      String
   Post       Post[]
   Followers  Follower[] @relation("follower")
   Followings Follower[] @relation("following")
@@ -30,14 +24,17 @@ model User {
 }
 
 model Post {
-  id      String    @id @default(uuid())
-  content String
-  image   String?
-  createAt DateTime @default(now())
-  ownerId String
-  owner   User      @relation(fields: [ownerId], references: [id])
-  Likes   Like[]
-  Comment Comment[]
+  id       String    @id @default(uuid())
+  title    String
+  subtitle String
+  topic    String
+  content  String
+  image    String?
+  createAt DateTime  @default(now())
+  ownerId  String
+  owner    User      @relation(fields: [ownerId], references: [id])
+  Likes    Like[]
+  Comment  Comment[]
 }
 
 model Like {

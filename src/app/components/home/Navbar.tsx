@@ -1,8 +1,8 @@
+'use client'
+
 import React from 'react'
-import Image from 'next/image'
 import { CiSearch } from 'react-icons/ci'
 import { GoBell, GoPlus } from 'react-icons/go'
-import { useSession } from 'next-auth/react'
 import { IoSearchOutline } from 'react-icons/io5'
 import { TfiWrite } from 'react-icons/tfi'
 import Link from 'next/link'
@@ -26,7 +26,7 @@ const Navbar = () => {
                         <input type="text" className='rounded-3xl text-sm outline-none w-full h-full p-2 ' />
                     </div>
                 </div>
-                <div className='flex items-center gap-x-8'>
+                <div className='flex items-center gap-x-8 cursor-pointer'>
                     <IoSearchOutline className='sm:hidden'/>
                     <TfiWrite onClick={() => redirect("/write")} className='hidden md:block' />
                     <GoBell/>
