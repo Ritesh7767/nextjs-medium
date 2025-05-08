@@ -9,22 +9,22 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import MediumLogo from '../MediumLogo'
 import UserProfile from '../UserProfile'
+import SearchUser from './SearchUser'
 
 const Navbar = () => {
 
   return (
-    <header>
+    <header className=''>
         <div className="">
             <div className='opacity-80 py-1 text-center'>Open in app &#x2197;</div>
         </div>
         <div className='px-4 border border-slate-200'>
             <nav className='flex justify-between text-xl'>
-                <div className='flex items-center gap-x-5'>
-                    <MediumLogo/>
-                    <div className='hidden sm:flex bg-slate-100 rounded-2xl items-center gap-x-2'>
-                        <CiSearch className='ml-2'/>
-                        <input type="text" className='rounded-3xl text-sm outline-none w-full h-full p-2 ' />
-                    </div>
+                <div className='relative flex items-center gap-x-5'>
+                    <Link href={"/main"}>
+                        <MediumLogo/>
+                    </Link>
+                    <SearchUser/>
                 </div>
                 <div className='flex items-center gap-x-8 cursor-pointer'>
                     <IoSearchOutline className='sm:hidden'/>
@@ -34,12 +34,12 @@ const Navbar = () => {
                 </div>
             </nav>
         </div>
-            <nav className='flex gap-6 items-center text-black/65 mt-3 pl-4'>
+            {/* <nav className='flex gap-6 items-center text-black/65 mt-3 pl-4'>
                 <GoPlus/>
                 <Link href={"#"} >For you</Link>
                 <Link href={"#"} >Following</Link>
                 <Link href={"#"} >Features</Link>
-            </nav>
+            </nav> */}
     </header>
   )
 }

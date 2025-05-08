@@ -11,6 +11,13 @@ export const getPost = async (id: string) => {
             id
         }, 
         include: {
+            owner: {
+                select: {
+                    profile: true,
+                    firstname: true,
+                    lastname: true
+                }
+            },
             _count: {
                 select: {
                     Likes: true,
@@ -21,15 +28,40 @@ export const getPost = async (id: string) => {
     })
 }
 
+export const getUserPost = async (id: string, take?: number | undefined) => {
+    const session = await sessionValidator()
+    return await prisma.post.findMany({
+        where: {
+            ownerId: id
+        },
+        take: take ? take : 10,
+        select: {
+            title: true,
+            subtitle: true,
+            image: true,
+            createAt: true,
+            _count: {
+                select: {
+                    Likes: true,
+                    Comment: true
+                }
+            },
+        }
+    })
+}
+
 export const getAllPost = async () => {
     const posts = await prisma.post.findMany({
+        take: 10,
         select: {
+            id: true,
             title: true,
             subtitle: true,
             image: true,
             createAt: true,
             owner: {
                 select: {
+                    id: true,
                     profile: true,
                     firstname: true,
                     lastname: true,
@@ -48,7 +80,6 @@ export const getAllPost = async () => {
                 }
             },
         },
-        
     })
     return posts 
 }
@@ -147,4 +178,45 @@ export const createPost = async (data: FormData) => {
             ownerId: session.user.id
         }
     })
+}
+
+export const staffPick = async () => {
+    return await prisma.post.findMany({
+        take: 3,
+        select: {
+            id: true,
+            title: true,
+            createAt: true,
+            owner: {
+                select: {
+                    profile: true,
+                    firstname: true,
+                    lastname: true
+                }
+            }
+        }
+    })
+}
+
+
+export const getTopics = async () => {
+    const allPost = await prisma.post.findMany({
+        select: {
+            topic: true
+        }
+    })
+
+    let topics =  new Set()
+
+    for(let ele of allPost){
+        const {topic} = ele
+        topics.add(topic)
+    }
+    let arr = []
+
+    for(let ele of topics){
+        console.log(ele)
+        arr.push(ele)
+    }
+    return arr
 }

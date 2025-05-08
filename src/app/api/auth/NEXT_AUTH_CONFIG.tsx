@@ -15,9 +15,7 @@ const NEXT_AUTH_CONFIG = {
 
                 if (!credentials) return null
 
-                console.log(credentials)
                 const {username, password} = credentials
-                console.log(username, password, "line number 20")
                 const credentialValidation = userLoginValidation.safeParse({username, password})
                 if (!credentialValidation.success) throw new Error(credentialValidation.error.message)
                 
@@ -42,7 +40,6 @@ const NEXT_AUTH_CONFIG = {
         },
         session: async ({user, session, token}: any) => {
             if (session.user){
-                console.log(user, session, token)
                 session.user.id = token.uid
                 // session.user.profile = 
                 // session.user.username = user.username

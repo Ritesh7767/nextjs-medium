@@ -7,8 +7,7 @@ import { redirect } from "next/navigation"
 export const sessionValidator = async () => {
     const session = await getServerSession(NEXT_AUTH_CONFIG)
     
-    if (!session) redirect("/")
+    // if (!session) redirect("/")
 
     return session
-
 }

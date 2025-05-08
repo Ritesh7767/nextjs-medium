@@ -17,4 +17,13 @@
     .get-container {
         @apply absolute top-0 bottom-0 left-0 right-0 bg-white
     }
+    .side-title {
+        @apply text-sm font-medium
+    }
+    .profile {
+        @apply w-5 h-5 rounded-full
+    }
+    .mail {
+        @apply w-10 h-10 bg-green-800 text-white rounded-full p-2
+    }
 }

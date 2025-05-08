@@ -51,39 +51,51 @@ export const register = async (data: FormData) => {
 }
 
 export const getAllUser = async (firstname: string) => {
-    await sessionValidator
+    await sessionValidator()
     return await prisma.user.findMany({
         where: {
             firstname
+        },
+        select: {
+            profile: true,
+            firstname: true,
+            lastname: true
         }
     })
 }
 
 export const getUser = async (id: string) => {
 
-    await sessionValidator()
+    // await sessionValidator()
     return await prisma.user.findUnique({
         where: {
             id
         },
-        include: {
-            Followings: {
-              select: {
-                following: {
-                    select: {
-                        profile: true,
-                        firstname: true,
-                        lastname: true,
-                        about: true
-                    }
-                }
-              }  
-            },
+        select: {
+            id: true,
+               profile: true,
+            username: true,
+            firstname: true,
+            lastname: true,
+            about: true,
             _count: {
                 select: {
                     Followers: true
                 }
             }
+        }
+    })
+}
+
+export const randomUser = async () => {
+    return await prisma.user.findMany({
+        take: 3,
+        select: {
+            id: true,
+            profile: true,
+            firstname: true,
+            lastname: true,
+            about: true
         }
     })
 }
