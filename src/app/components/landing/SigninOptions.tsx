@@ -11,12 +11,12 @@ const Signin = ({handleEmail}: {handleEmail: () => void}) => {
     <>
         <h2 className='auth-title mt-24'>Welcome back</h2>
         <div className='mt-20 flex flex-col gap-3'>
-            <AuthIcons Icon={FcGoogle} authName='Google' />
-            <AuthIcons Icon={FaFacebook} authName='Facebook' />
-            <AuthIcons Icon={SiApple} authName='Apple' />
-            <AuthIcons Icon={FaXTwitter} authName='X' />
+            <AuthIcons Icon={FcGoogle} authName='Sign in Google' />
+            <AuthIcons Icon={FaFacebook} authName='Sign in Facebook' />
+            <AuthIcons Icon={SiApple} authName='Sign in Apple' />
+            <AuthIcons Icon={FaXTwitter} authName='Sign in X' />
             <div onClick={handleEmail}>
-              <AuthIcons Icon={AiOutlineMail} authName='email' />
+              <AuthIcons Icon={AiOutlineMail} authName='Sign in email' />
             </div>
         </div>
     </>

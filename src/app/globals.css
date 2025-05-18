@@ -3,7 +3,7 @@
 
 @layer components {
     .btn {
-        @apply rounded-3xl bg-black py-2 px-3 text-white font-medium
+        @apply rounded-3xl bg-black cursor-pointer py-2 px-3 text-white font-medium
     }
     .auth-title {
         @apply text-2xl font-serif text-center
@@ -25,5 +25,11 @@
     }
     .mail {
         @apply w-10 h-10 bg-green-800 text-white rounded-full p-2
+    }
+    .post-title {
+        @apply font-bold text-xl
+    }
+    .post-subtitle {
+        @apply text-black/75 mt-1
     }
 }

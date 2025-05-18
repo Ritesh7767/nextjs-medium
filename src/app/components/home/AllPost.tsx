@@ -10,8 +10,8 @@ export interface ownerInterface {
     profile: string,
     firstname: string,
     lastname: string,
-    about: string,
-    _count: {
+    about?: string,
+    _count?: {
         Followers: number
     }
 }
@@ -25,7 +25,7 @@ export interface postInterface {
     subtitle: string,
     image: string | null,
     createAt: Date,
-    owner: ownerInterface | undefined,
+    owner?: ownerInterface
     _count: likeCommentInterface
 }
 const getPostData = async () => {
@@ -40,7 +40,7 @@ const Card = async () => {
   return (
     <section className='mt-7'>
         <div className='flex'>
-            <div className='lg:w-[80%] lg:px-24'>
+            <div className='lg:w-[80%] md:px-24'>
                 {
                     postData?.map((ele: postInterface, index: number) => {
                         return <PostCard ele={ele} key={index}/>

@@ -2,6 +2,7 @@ import React from 'react'
 import { BsThreeDots } from 'react-icons/bs'
 import { CiMail } from 'react-icons/ci'
 import { ownerInterface } from '../home/AllPost'
+import FollowBtn from '@/app/(layout)/post/FollowBtn'
 
 const UserInfo = ({user}: {user: ownerInterface}) => {
 
@@ -19,7 +20,7 @@ const UserInfo = ({user}: {user: ownerInterface}) => {
                         </div>
                         <div className="flex flex-col gap-2 ">
                             <p className="font-bold text-2xl">{firstname + " " + lastname}</p>
-                            <p className="text-black/70 lg:hidden">{_count.Followers} followers</p>
+                            <p className="text-black/70 lg:hidden">{_count?.Followers} followers</p>
                         </div>
                     </div>
                     <div className="sm:hidden">
@@ -29,7 +30,7 @@ const UserInfo = ({user}: {user: ownerInterface}) => {
                 <div className="flex flex-col sm:flex-row-reverse justify-between sm:justify-normal sm:gap-2">
                     <BsThreeDots className="w-6 h-6"  />
                     <CiMail className="mail sm:mr-3 lg:hidden" />
-                    <button className="hidden sm:block bg-green-800 btn lg:hidden">Follow</button>
+                    <FollowBtn className={"hidden sm:block bg-green-800 btn lg:hidden"} id={user.id}/>
                 </div>
             </div>
         </div>

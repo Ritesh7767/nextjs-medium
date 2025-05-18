@@ -51,7 +51,7 @@ export default async ({searchParams}:searchParamsProps) => {
     return (
         <div>
             <div className="md:flex">
-                <div>
+                <div className="px-10 sm:px-20 md:px-24">
                     <UserInfo user={user}/>
                     <Navigator/>
                     {
@@ -61,7 +61,7 @@ export default async ({searchParams}:searchParamsProps) => {
                 <div className="hidden lg:block lg:flex-1 px-5">
                     <UserDetails user={user}/>
                     <Following data={userFollowings} />
-                </div>  
+                </div>
             </div>
         </div>
     )

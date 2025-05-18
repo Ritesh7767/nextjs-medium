@@ -1,6 +1,7 @@
 import React from 'react'
 import { CiMail } from 'react-icons/ci'
 import { ownerInterface } from '../home/AllPost'
+import FollowBtn from '@/app/(layout)/post/FollowBtn'
 
 const UserDetails = ({user}: {user: ownerInterface}) => {
 
@@ -11,10 +12,10 @@ const UserDetails = ({user}: {user: ownerInterface}) => {
             className='w-24 h-24 rounded-full' 
             src={profile}/>
         <p className='font-bold'>{firstname + " " + lastname}</p>
-        <p className='text-black/70 text-sm' >{_count.Followers} followers</p>
+        <p className='text-black/70 text-sm' >{_count?.Followers} followers</p>
         <p className='text-black/70 text-sm'>{about}</p>
         <div className='flex gap-2'>
-            <button className='btn bg-green-800'>Follow</button>
+            <FollowBtn className='btn bg-green-800 px-4' id={user.id} />
             <CiMail className='mail' />
         </div>
     </div>

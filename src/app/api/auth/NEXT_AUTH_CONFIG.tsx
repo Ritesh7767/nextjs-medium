@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma/prisma";
 import { userLoginValidation, userRegisterValidation } from "@/lib/zod/user.zod";
 import bcrypt from "bcryptjs";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { redirect } from "next/navigation";
 
 const NEXT_AUTH_CONFIG = {
     providers: [
@@ -24,9 +25,14 @@ const NEXT_AUTH_CONFIG = {
                         username
                     }
                 })
-                if (!user) throw new Error("User does not exist")
-
-                return user
+                if (!user) return null
+                return {
+                    id: user.id,
+                    profile: user.profile,
+                    firstname: user.firstname,
+                    lastname: user.lastname,
+                    email: user.email
+                }
             }
         })
     ],

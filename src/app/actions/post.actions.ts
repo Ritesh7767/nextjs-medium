@@ -29,13 +29,14 @@ export const getPost = async (id: string) => {
 }
 
 export const getUserPost = async (id: string, take?: number | undefined) => {
-    const session = await sessionValidator()
+    await sessionValidator()
     return await prisma.post.findMany({
         where: {
             ownerId: id
         },
         take: take ? take : 10,
         select: {
+            id: true,
             title: true,
             subtitle: true,
             image: true,
@@ -51,6 +52,7 @@ export const getUserPost = async (id: string, take?: number | undefined) => {
 }
 
 export const getAllPost = async () => {
+    await sessionValidator()
     const posts = await prisma.post.findMany({
         take: 10,
         select: {
@@ -142,7 +144,6 @@ export const createPost = async (data: FormData) => {
 
     const result = postValidator.safeParse(rawData)
     if (!result.success){
-        console.log(result.error.message)
         throw new Error(result.error.message)
     }
 
@@ -200,6 +201,7 @@ export const staffPick = async () => {
 
 
 export const getTopics = async () => {
+    await sessionValidator()
     const allPost = await prisma.post.findMany({
         select: {
             topic: true
@@ -215,8 +217,40 @@ export const getTopics = async () => {
     let arr = []
 
     for(let ele of topics){
-        console.log(ele)
         arr.push(ele)
     }
     return arr
+}
+
+export const getRecommendation = async () => {
+    return await prisma.post.findMany({
+        take: 4,
+        select: {
+            id: true,
+            title: true,
+            subtitle: true,
+            image: true,
+            createAt: true,
+            owner: {
+                select: {
+                    id: true,
+                    profile: true,
+                    firstname: true,
+                    lastname: true,
+                    about: true,
+                    _count: {
+                        select: {
+                            Followers: true
+                        }
+                    }
+                }
+            },
+            _count: {
+                select: {
+                    Likes: true,
+                    Comment: true
+                }
+            },
+        }
+    })
 }

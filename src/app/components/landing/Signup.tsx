@@ -15,10 +15,11 @@ const Signup = ({handleEmail}: {handleEmail: () => void}) => {
                 <Input type="text" name="lastname" />
                 <Input type="text" name="username" />
                 <Input type="email" name="email" />
+                <Input type="text" name="about" />
                 <Input type="password" name="password" />
             </div>
             <div className="flex justify-center items-center mt-14">
-                <input type="submit" value={"Continue"} className="btn" />
+                <input type="submit" value={"Continue"} className="btn cursor-pointer" />
             </div>
         </form>
         <Cross handleClick={handleEmail}/>

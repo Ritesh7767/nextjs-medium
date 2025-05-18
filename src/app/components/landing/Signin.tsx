@@ -4,6 +4,7 @@ import { MdOutlineKeyboardArrowLeft } from 'react-icons/md'
 import { RxCross2 } from 'react-icons/rx'
 import Input from './Input'
 import Cross from './Cross'
+import { useRouter, redirect } from 'next/navigation'
 
 const Signin = ({handleEmail}: {handleEmail: () => void}) => {
 
@@ -11,18 +12,20 @@ const Signin = ({handleEmail}: {handleEmail: () => void}) => {
     username: "",
     password: ""
   })
+  const router = useRouter()
 
   const [error, setError] = useState("")
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     console.log(credentials)
-    // const formData = new FormData(e.currentTarget)
     e.preventDefault()
     const result = await signIn("credentials", {
       ...credentials, 
-      redirect: true,
-      callbackUrl: "/"
-    })
+      redirect: false,
+      // callbackUrl: "/main"
+    })  
+    console.log(result)
+    if (result?.ok) router.push("/main")
 
     if (result?.error) setError(result.error)
     console.log(error)

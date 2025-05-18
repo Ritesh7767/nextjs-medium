@@ -4,6 +4,7 @@ import { getAllUser } from '@/app/actions/user.actions'
 import React, { useRef, useState } from 'react'
 import { CiSearch } from 'react-icons/ci'
 import DisplayUsers from './DisplayUsers'
+import { ownerInterface } from './AllPost'
 
 export interface usersInterface {
     profile: string,
@@ -13,10 +14,8 @@ export interface usersInterface {
 
 const SearchUser = () => {
 
-    const [users, setUsers] = useState<usersInterface[] | null>(null)
+    const [users, setUsers] = useState<ownerInterface[] | null>(null)
     const id = useRef<NodeJS.Timeout | null>(null)
-    console.log(users)
-
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (id.current) clearTimeout(id.current)
@@ -30,11 +29,14 @@ const SearchUser = () => {
             }
         }, 1000)
     }
+
+    const handleClick = () => setUsers(null)
+
   return (
     <div className='hidden sm:flex bg-slate-100 rounded-2xl items-center gap-x-2'>
         <CiSearch className='ml-2'/>
         <input onChange={handleChange} type="text" className='rounded-3xl text-sm outline-none w-full h-full p-2 ' />
-        {users && <DisplayUsers users={users} />}
+        {users && <DisplayUsers users={users} handleClick={handleClick} />}
     </div>
   )
 }

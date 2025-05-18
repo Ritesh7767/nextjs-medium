@@ -9,10 +9,10 @@ const SignupOptions = ({handleEmail}: {handleEmail: () => void}) => {
     <>
         <h2 className='auth-title mt-32'>Join Medium</h2>
         <div className='mt-20 flex flex-col gap-3'>
-            <AuthIcons Icon={FcGoogle} authName='Google' />
-            <AuthIcons Icon={FaFacebook} authName='Facebook' />
+            <AuthIcons Icon={FcGoogle} authName='Sign up Google' />
+            <AuthIcons Icon={FaFacebook} authName='Sign up Facebook' />
             <div onClick={handleEmail} >
-              <AuthIcons Icon={AiOutlineMail} authName='email' />
+              <AuthIcons Icon={AiOutlineMail} authName='Sign up email' />
             </div>
         </div>
     </>

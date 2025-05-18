@@ -6,7 +6,7 @@ const AuthIcons = ({Icon, authName}: {Icon: React.ElementType, authName: string}
             <div className='absolute top-0 bottom-0 px-2 flex justify-center items-center'>
                 <Icon className="text-2xl" />
             </div>
-            <p className='text-center'>Sign up with {authName}</p>
+            <p className='text-center'>{authName}</p>
         </div>
     )
 }

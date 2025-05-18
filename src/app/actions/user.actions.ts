@@ -57,6 +57,7 @@ export const getAllUser = async (firstname: string) => {
             firstname
         },
         select: {
+            id: true,
             profile: true,
             firstname: true,
             lastname: true
@@ -66,7 +67,7 @@ export const getAllUser = async (firstname: string) => {
 
 export const getUser = async (id: string) => {
 
-    // await sessionValidator()
+    await sessionValidator()
     return await prisma.user.findUnique({
         where: {
             id
@@ -88,6 +89,7 @@ export const getUser = async (id: string) => {
 }
 
 export const randomUser = async () => {
+    await sessionValidator()
     return await prisma.user.findMany({
         take: 3,
         select: {

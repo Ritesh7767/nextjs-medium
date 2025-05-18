@@ -14,7 +14,7 @@ import SearchUser from './SearchUser'
 const Navbar = () => {
 
   return (
-    <header className=''>
+    <header className='relative overflow-hidden'>
         <div className="">
             <div className='opacity-80 py-1 text-center'>Open in app &#x2197;</div>
         </div>

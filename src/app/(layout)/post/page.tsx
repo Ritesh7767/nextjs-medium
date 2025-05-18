@@ -1,10 +1,15 @@
 import { PiHandsClappingThin } from "react-icons/pi"
-import { getPost, getUserPost } from "../../actions/post.actions"
+import { getPost, getRecommendation, getUserPost } from "../../actions/post.actions"
 import { FaRegComment } from "react-icons/fa"
 import { TfiComment } from "react-icons/tfi"
 import Link from "next/link"
 import { postInterface } from "@/app/components/home/AllPost"
 import PostCard from "@/app/components/home/PostCard"
+import LikeComment from "@/app/components/post/LikeComment"
+import FollowBtn from "./FollowBtn"
+import DisplayComment from "@/app/components/post/DisplayComment"
+import RecommendedCard from "@/app/components/post/RecommendedCard"
+import DisplayRecommended from "@/app/components/post/DisplayRecommended"
 
 interface dataInterface {
     id: string,
@@ -29,6 +34,7 @@ export default async ({searchParams}: {searchParams: {id: string}}) => {
     const {id} = await searchParams
     const post = await getPost(id) as dataInterface
     const userPost = await getUserPost(post.ownerId, 4) as postInterface[]
+    const recommendedPost = await getRecommendation()
     const paras = post.content.split("\n")
     const read = paras.length + 2
     const date = new Date(post.createAt).toLocaleDateString("en-GB", {
@@ -36,8 +42,11 @@ export default async ({searchParams}: {searchParams: {id: string}}) => {
         month: "short",
         year: "numeric"
     })
+
+    console.log(userPost)
+
     return (
-        <section className="px-4">
+        <section className="px-4 md:px-20 lg:px-28 overflow-x-hidden relative">
             <div>
                 <h1 className="text-3xl font-extrabold" >{post.title}</h1>
                 <p className="font-medium text-lg tracking-tight text-black/50 mt-1">{post.subtitle}</p>
@@ -47,45 +56,36 @@ export default async ({searchParams}: {searchParams: {id: string}}) => {
                     <span className="">{read} min read</span>
                     <span className="">{date}</span>
                 </div>
-                <Link href={`/user?id=${post.ownerId}`} className="flex gap-5 items-center mt-3">
-                    <img
-                        className="w-9 h-9 rounded-full" 
-                        src={post.owner.profile} alt="" />
-                    <span className="font-medium text-sm text-black/75">{post.owner.firstname} {post.owner.lastname}</span>
-                    <button className="btn bg-white text-black border border-black">Follow</button>
-                </Link>
+                <div className="flex gap-3">
+                    <Link href={`/user?id=${post.ownerId}`} className="flex gap-2 items-center mt-3">
+                        <img
+                            className="w-9 h-9 rounded-full" 
+                            src={post.owner.profile} alt="" />
+                        <span className="font-medium text-sm text-black/75">{post.owner.firstname} {post.owner.lastname}</span>
+                    </Link>
+                    <FollowBtn id={post.ownerId} className="btn bg-white text-black border border-black" /> 
+                </div>
             </div>
             <div className="flex gap-5 mt-2 mb-2">
-                <div className="flex gap-1 items-center">
-                    <PiHandsClappingThin/>
-                    <span>{post._count.Likes}</span>
-                </div>
-                <div className="flex gap-1 items-center">
-                    <TfiComment className="" />
-                    <span>{post._count.Comment}</span>
-                </div>
+                <LikeComment like={post._count.Likes} comment={post._count.Comment} id={post.id} />
             </div>
-            <div>
-                <img src={post.image} className="" />
+            <div className="h-[50vh]">
+                <img src={post.image} className="w-full h-full " />
             </div>
             <article className="font-serif text-black/80 mt-2">
                 {
                     paras.map((para: string, index: number) => (
-                        <>
-                            <p key={index} className="leading-6">{para}</p>
+                        <div key={index}>
+                            <p className="leading-6">{para}</p>
                             <p className="h-2"></p>
-                        </>
+                        </div>
 
                 ))
             }
             </article>
             <div>
-                <h2>More from {post.owner.firstname} {post.owner.lastname}</h2>
-                <div>
-                    {
-                        userPost.map((ele: postInterface, index: number) => <PostCard ele={ele} key={index} />)
-                    }
-                </div>
+                <DisplayRecommended title={post.owner.firstname + " " + post.owner.lastname} posts={userPost} />
+                <DisplayRecommended title="Medium" posts={recommendedPost}/>
             </div>
         </section>
     )
