@@ -3,7 +3,6 @@
 import React, { useState } from 'react'
 import SignupOptions from './SignupOptions'
 import SigninOptions from './SigninOptions'
-import { RxCross2 } from 'react-icons/rx'
 import Signin from './Signin'
 import Signup from './Signup'
 import Cross from './Cross'

@@ -1,12 +1,9 @@
 "use client"
 
-import React, { useState } from 'react'
-import UserCard from './UserCard'
+import React from 'react'
 import { postInterface } from './AllPost'
 import { BsThreeDots } from 'react-icons/bs'
 import { CiBookmark, CiCircleMinus } from 'react-icons/ci'
-import { FaComment, FaPlus } from 'react-icons/fa'
-import { FaHandsClapping } from 'react-icons/fa6'
 import Link from 'next/link'
 import UserDiv from '../UserDiv'
 import CardFooter from '../post/CardFooter'

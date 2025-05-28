@@ -1,14 +1,8 @@
-import { PiHandsClappingThin } from "react-icons/pi"
 import { getPost, getRecommendation, getUserPost } from "../../actions/post.actions"
-import { FaRegComment } from "react-icons/fa"
-import { TfiComment } from "react-icons/tfi"
 import Link from "next/link"
 import { postInterface } from "@/app/components/home/AllPost"
-import PostCard from "@/app/components/home/PostCard"
 import LikeComment from "@/app/components/post/LikeComment"
 import FollowBtn from "./FollowBtn"
-import DisplayComment from "@/app/components/post/DisplayComment"
-import RecommendedCard from "@/app/components/post/RecommendedCard"
 import DisplayRecommended from "@/app/components/post/DisplayRecommended"
 
 interface dataInterface {
@@ -42,8 +36,6 @@ export default async ({searchParams}: {searchParams: {id: string}}) => {
         month: "short",
         year: "numeric"
     })
-
-    console.log(userPost)
 
     return (
         <section className="px-4 md:px-20 lg:px-28 overflow-x-hidden relative">

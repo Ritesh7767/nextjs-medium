@@ -1,5 +1,4 @@
 import { staffPick } from '@/app/actions/post.actions'
-import Image from 'next/image'
 import React from 'react'
 
 interface staffPickInterface {

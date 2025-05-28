@@ -1,8 +1,6 @@
-import { BsThreeDots } from "react-icons/bs"
 import { getFollowings } from "../../actions/follower.actions"
 import { getUserPost } from "../../actions/post.actions"
 import { getUser } from "../../actions/user.actions"
-import { CiMail } from "react-icons/ci"
 import UserInfo from "../../components/user/UserInfo"
 import Navigator from "../../components/user/Navigator"
 import PostCard from "../../components/home/PostCard"
@@ -13,21 +11,6 @@ import Following from "@/app/components/user/Following"
 interface searchParamsProps {
     searchParams: {
         id: string
-    }
-}
-interface followingInterface {
-    id: string,
-    firstname: string,
-    lastname: string,
-    profile: string,
-    about: string
-}
-interface userInterface extends followingInterface {
-    Followings: followingInterface[]
-    email: string,
-    username: string,
-    _count: {
-        Followers: number
     }
 }
 

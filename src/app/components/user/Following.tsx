@@ -13,14 +13,6 @@ const Following = ({data}: {data: ownerInterface[]}) => {
 
                     <div className='pr-32 relative' key={index}>
                         <UserDiv owner={ele} />
-                        {/* <div className="flex gap-2 items-center">
-                            <img 
-                                className='w-8 h-8 rounded-full'
-                                src={ele.profile} alt="" />
-                            <p className='text-black/70 text-sm whitespace-nowrap'>
-                                {ele.firstname + " " + ele.lastname}
-                            </p>
-                        </div> */}
                         <BsThreeDots className='text-xl absolute right-2 top-0'/>
                     </div>
                 ))

@@ -1,10 +1,9 @@
 import { signIn } from 'next-auth/react'
 import React, { useState } from 'react'
 import { MdOutlineKeyboardArrowLeft } from 'react-icons/md'
-import { RxCross2 } from 'react-icons/rx'
 import Input from './Input'
 import Cross from './Cross'
-import { useRouter, redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 const Signin = ({handleEmail}: {handleEmail: () => void}) => {
 
@@ -22,7 +21,6 @@ const Signin = ({handleEmail}: {handleEmail: () => void}) => {
     const result = await signIn("credentials", {
       ...credentials, 
       redirect: false,
-      // callbackUrl: "/main"
     })  
     console.log(result)
     if (result?.ok) router.push("/main")

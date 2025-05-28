@@ -1,5 +1,5 @@
 import { getAllPost } from '@/app/actions/post.actions'
-import React, { useState } from 'react'
+import React from 'react'
 import PostCard from './PostCard'
 import StaffPicks from './StaffPicks'
 import RecommendedTopics from './RecommendedTopics'
@@ -28,10 +28,6 @@ export interface postInterface {
     owner?: ownerInterface
     _count: likeCommentInterface
 }
-const getPostData = async () => {
-    return await getAllPost()
-}
-
 const Card = async () => {
     
     const postData = await getAllPost()

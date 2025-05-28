@@ -15,7 +15,7 @@ export const registerComment = async ({postId, comment}: {postId: string, commen
         }
     })
     console.log(createdComment)
-    return getComments(postId)
+    return getComments(postId)  
 }
 
 export const getComments = async (postId: string) => {
