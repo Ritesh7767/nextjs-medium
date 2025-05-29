@@ -16,7 +16,7 @@ const RecommendedCard = ({ele}: {ele: postInterface}) => {
 
   return (
     <Link href={`/post?id=${id}`} className='flex flex-col gap-4'>
-      {image && <img src={image} className='w-full h-52 rounded-md' />}
+      {image && <img alt='' src={image} className='w-full h-52 rounded-md' />}
       {owner && <div>
         <UserDiv owner={owner} />
       </div>}

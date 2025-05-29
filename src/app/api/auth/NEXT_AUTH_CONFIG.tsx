@@ -1,8 +1,16 @@
 import { prisma } from "@/lib/prisma/prisma";
-import { userLoginValidation, userRegisterValidation } from "@/lib/zod/user.zod";
-import bcrypt from "bcryptjs";
+import { userLoginValidation } from "@/lib/zod/user.zod";
+import { DefaultSession, Session, User } from "next-auth";
+import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { redirect } from "next/navigation";
+
+declare module "next-auth" {
+    interface Session {
+        user: {
+            id: string
+        } & DefaultSession["user"]
+    }
+}
 
 const NEXT_AUTH_CONFIG = {
     providers: [
@@ -12,7 +20,7 @@ const NEXT_AUTH_CONFIG = {
                 username: {label: "Username", placeholder: "Username"},
                 password: {label: "Password", placeholder: "Password"}
             },
-            async authorize(credentials: any){
+            async authorize(credentials){
 
                 if (!credentials) return null
 
@@ -38,17 +46,15 @@ const NEXT_AUTH_CONFIG = {
     ],
     secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
-        jwt: async ({user, token}: any) => {
+        jwt: async ({user, token}: {user: User, token: JWT}) => {
             if (user) {
                 token.uid = user.id
             }
             return token
         },
-        session: async ({user, session, token}: any) => {
+        session: async ({session, token}: {session: Session, token: JWT}) => {
             if (session.user){
-                session.user.id = token.uid
-                // session.user.profile = 
-                // session.user.username = user.username
+                session.user.id = token.uid as string
             }
             return session
         }

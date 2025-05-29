@@ -23,7 +23,7 @@ const StaffPicks = async () => {
             <div className='flex flex-col gap-5 mt-4'>
                 {
                     data.map((ele: staffPickInterface, index: number) => {
-                        const {title, createAt, id, owner} = ele
+                        const {title, createAt, owner} = ele
                         const {profile, firstname, lastname} = owner
                         const date = new Date(createAt).toLocaleDateString("en-GB", {
                             day: "2-digit",

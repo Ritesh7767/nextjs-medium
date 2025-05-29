@@ -11,7 +11,7 @@ const RecommendedUser = async () => {
             <div>
                 {
                     data.map((ele, index) => (
-                        <div className='flex gap-1 items-start'>
+                        <div key={index} className='flex gap-1 items-start'>
                             <img src={ele.profile} alt="" className='w-7 h-7 rounded-full' />
                             <div className='flex flex-col gap-1'>
                                 <span className='font-bold text-sm'>{ele.firstname + " " + ele.lastname}</span>

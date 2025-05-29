@@ -18,29 +18,31 @@ const PostCard = ({ele}: {ele: postInterface}) => {
     })
 
     return (
-    <Link href={`/post?id=${id}`} className='px-5 border border-slate-100'>
+    <>
         {owner && <UserDiv owner={owner}/>}
-        <div className='flex justify-between gap-4 mt-3'>
-            <div className='w-3/5'>
-                <h2 className='post-title'>{title}</h2>
-                <p className='post-subtitle'>{subtitle}</p>
+        <Link href={`/post?id=${id}`} className='px-5 border border-slate-100'>
+            <div className='flex justify-between gap-4 mt-3'>
+                <div className='w-3/5'>
+                    <h2 className='post-title'>{title}</h2>
+                    <p className='post-subtitle'>{subtitle}</p>
+                </div>
+                {
+                    image && 
+                    <div className='flex-1 flex justify-center items-center'>
+                        <img src={image} alt="post image" className='w-[25vh] h-28 '/>
+                    </div>
+                }
             </div>
-            {
-                image && 
-                        <div className='flex-1 flex justify-center items-center'>
-                            <img src={image} alt="post image" className='w-[25vh] h-28 '/>
-                        </div>
-            }
-        </div>
-        <div className='flex justify-between items-center mt-5 mb-9 sm:w-3/5 pr-4'>
-            <CardFooter date={date} Likes={Likes} Comment={Comment} />
-            <div className='flex gap-3 text-2xl'>
-                <CiCircleMinus/>
-                <CiBookmark className='hidden sm:block' />
-                <BsThreeDots/>
+            <div className='flex justify-between items-center mt-5 mb-9 sm:w-3/5 pr-4'>
+                <CardFooter date={date} Likes={Likes} Comment={Comment} />
+                <div className='flex gap-3 text-2xl'>
+                    <CiCircleMinus/>
+                    <CiBookmark className='hidden sm:block' />
+                    <BsThreeDots/>
+                </div>
             </div>
-        </div>
-    </Link>
+        </Link>
+    </>
 )
 }
 

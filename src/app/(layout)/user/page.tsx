@@ -8,13 +8,13 @@ import { postInterface } from "../../components/home/AllPost"
 import UserDetails from "@/app/components/user/UserDetails"
 import Following from "@/app/components/user/Following"
 
-interface searchParamsProps {
+export interface searchParamsProps {
     searchParams: {
         id: string
     }
 }
 
-export default async ({searchParams}:searchParamsProps) => {
+export default async function page({searchParams}:searchParamsProps){
 
     const {id} = await searchParams
     console.log(typeof id)

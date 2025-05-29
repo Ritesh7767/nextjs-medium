@@ -1,7 +1,7 @@
 import React from 'react'
 import { CiMail } from 'react-icons/ci'
 import { ownerInterface } from '../home/AllPost'
-import FollowBtn from '@/app/(layout)/post/FollowBtn'
+import FollowBtn from '@/app/components/post/FollowBtn'
 
 const UserDetails = ({user}: {user: ownerInterface}) => {
 
@@ -9,6 +9,7 @@ const UserDetails = ({user}: {user: ownerInterface}) => {
   return (
     <div className='flex flex-col gap-2'>
         <img
+            alt=''
             className='w-24 h-24 rounded-full' 
             src={profile}/>
         <p className='font-bold'>{firstname + " " + lastname}</p>

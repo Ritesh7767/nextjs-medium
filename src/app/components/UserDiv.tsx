@@ -11,14 +11,16 @@ const UserDiv = ({owner}: {owner: ownerInterface}) => {
   return (
     <div className='flex items-center gap-2 relative'>
             <img src={owner?.profile} alt="profile image" className='w-8 h-8 rounded-full' />
-            <Link
-                href={`/user?id=${owner.id}`} 
-                onMouseEnter={() => setHover(true)}
-                onMouseLeave={() => setHover(false)}
-                className='relative hover:underline cursor-pointer text-sm whitespace-nowrap'>
-            {owner.firstname + " " + owner.lastname}
-                {hover && <UserCard owner={owner}/>}
-            </Link>
+            <div className='inline'>
+              <Link
+                  href={`/user?id=${owner.id}`} 
+                  onMouseEnter={() => setHover(true)}
+                  onMouseLeave={() => setHover(false)}
+                  className='relative hover:underline cursor-pointer text-sm whitespace-nowrap'>
+              {owner.firstname + " " + owner.lastname}
+              </Link>
+            {hover && <UserCard owner={owner}/>}
+            </div>
       </div>
   )
 }

@@ -3,7 +3,7 @@
 import React, { useRef, useState } from "react"
 import { RiImageAddFill } from "react-icons/ri"
 
-export default () => {
+export default function Page (){
 
     const [imagePreview, setImagePreview] = useState<string>("")
     const inputFile = useRef<HTMLInputElement>(null)
@@ -20,7 +20,7 @@ export default () => {
     <section className="">
         <div className="flex justify-center items-center">
             <input ref={inputFile} onChange={handleChange} type="file" className="hidden" /><br />
-            <img src={imagePreview}/>
+            <img alt="" src={imagePreview}/>
         </div>
         <div className="px-5 mt-2">
             <div className="flex justify-between">

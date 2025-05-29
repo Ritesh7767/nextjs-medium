@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import React from 'react'
 import landingImage from '@/assets/landingImage.webp'
 
@@ -13,7 +12,7 @@ const LandingHero = () => {
             <button className='btn mt-12 mb-8 px-9 py-3 md:text-xl md:px-12 md:bg-green-600'>Start reading</button>
           </div>
           <div className='hidden lg:block lg:flex-1 relative'>
-            <Image src={landingImage} alt='image' className='absolute h-full lg:-left-28 -top-9 lg:max-w-none lg:w-auto' />
+            <img src={landingImage.src} alt='image' className='absolute h-full lg:-left-28 -top-9 lg:max-w-none lg:w-auto' />
           </div>
         </div>
       </div>

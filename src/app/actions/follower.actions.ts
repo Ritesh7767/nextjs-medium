@@ -6,7 +6,7 @@ import { sessionValidator } from "@/lib/sessionValidator"
 export const follow = async (id: string) => {
     const session = await sessionValidator()
 
-    const isAlreadyFollowing: any = await prisma.follower.findFirst({
+    const isAlreadyFollowing = await prisma.follower.findFirst({
         where: {
             followerId: session.user.id,
             followingId: id
@@ -27,7 +27,7 @@ export const follow = async (id: string) => {
 export const unFollow = async (id: string) => {
     const session = await sessionValidator()
 
-    const unFollowed = await prisma.follower.delete({
+    await prisma.follower.delete({
         where: {
             followerId_followingId: {
                 followerId: session.user.id,
@@ -42,7 +42,7 @@ export const unFollow = async (id: string) => {
 export const isFollowing = async (id: string) => {
 
     const session = await sessionValidator()
-    let result = await prisma.follower.findUnique({
+    const result = await prisma.follower.findUnique({
         where: {
             followerId_followingId: {
                 followerId: session.user.id,
@@ -56,7 +56,7 @@ export const isFollowing = async (id: string) => {
 
 export const getFollowings = async (id: string) => {
     await sessionValidator()
-    let data =  await prisma.follower.findMany({
+    const data =  await prisma.follower.findMany({
         where: {
             followingId: id
         },
@@ -72,6 +72,6 @@ export const getFollowings = async (id: string) => {
         }
     })
     
-    let result = data.flatMap(f => f.follower)
+    const result = data.flatMap(f => f.follower)
     return result
 }

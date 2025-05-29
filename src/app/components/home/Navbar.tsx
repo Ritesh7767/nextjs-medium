@@ -1,8 +1,7 @@
 'use client'
 
 import React from 'react'
-import { CiSearch } from 'react-icons/ci'
-import { GoBell, GoPlus } from 'react-icons/go'
+import { GoBell } from 'react-icons/go'
 import { IoSearchOutline } from 'react-icons/io5'
 import { TfiWrite } from 'react-icons/tfi'
 import Link from 'next/link'

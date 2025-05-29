@@ -27,7 +27,7 @@ export const register = async (data: FormData) => {
     }
 
     
-    for(let key in userData){
+    for(const key in userData){
         userData[key] = data.get(key) as string
     }
     

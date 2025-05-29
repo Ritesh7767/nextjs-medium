@@ -14,8 +14,8 @@ const LikeComment = ({like, comment, id}: {like: number, comment: number, id: st
     const [displayComment, setDisplayComment] = useState(false)
     const handleClick = async () => {
         setClapped(true)
-        let response = await likePost(id)
-        response && setLikeComment(prev => ({...prev, like: prev.like + 1}))
+        const response = await likePost(id)
+        if(response) setLikeComment(prev => ({...prev, like: prev.like + 1}))
     }
 
     const handleComment = () => setDisplayComment(!displayComment)

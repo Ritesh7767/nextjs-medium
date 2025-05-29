@@ -14,7 +14,7 @@ export const likePost = async (id: string) => {
     })
     if (alreadyLike) return false 
     
-    const createEntry = await prisma.like.create({
+    await prisma.like.create({
         data: {
             postId: id,
             userId: session.user.id

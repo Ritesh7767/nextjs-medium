@@ -21,7 +21,7 @@ const GetStarted = ({handleClick}: {handleClick: () => void}) => {
           <p className='text-center mt-10'>{signUp ? "Already have an account?": "Create Account"} <span onClick={() => setSignUp(!signUp)} className='font-bold text-green-700 cursor-pointer'>Sign {signUp ? "in": "up"}</span></p>
           <div className='disclaimer-container'>
             <p className='text-black/60'>
-              Click "Sign up" to agree to Medium's <span className='underline'>Terms of Service</span> and acknowledge that Medium's <span className='underline'>Privacy Policy</span> applies to you
+              Click &quot;Sign up&quot; to agree to Medium&#39;s <span className="underline">Terms of Service</span> and acknowledge that Medium&#39;s <span className="underline">Privacy Policy</span> applies to you
             </p>
           </div>
           {email &&  (signUp ? <Signup handleEmail={handleEmail} />: <Signin handleEmail={handleEmail}/>)}

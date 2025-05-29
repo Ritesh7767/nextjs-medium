@@ -6,7 +6,7 @@ import LandingHero from "./components/landing/LandingHero";
 import GetStarted from "./components/landing/GetStarted";
 import LandingFooter from "./components/landing/LandingFooter";
 
-export default () => {
+export default function Page (){
     const [getStarted, setGetStarted] = useState(false)
     const handleClick = () => setGetStarted(!getStarted)
 

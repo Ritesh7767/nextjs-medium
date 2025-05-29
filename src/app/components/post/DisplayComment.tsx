@@ -55,7 +55,7 @@ const DisplayComment = ({postId, displayComment, handleComment}: {postId: string
             <div className='bg-white'>
                 <h2 className='font-semibold text-lg'>Responses(163)</h2>
                 <div className='flex gap-2 items-center mt-12'>
-                    <img src="https://avatar.iran.liara.run/public/boy" className='profile w-8 h-8' />
+                    <img alt="" src="https://avatar.iran.liara.run/public/boy" className='profile w-8 h-8' />
                     <span className='text-sm'>Ritesh</span>
                 </div>
                 <form onClick={e => e.stopPropagation()} onSubmit={handleSubmit} className='bg-slate-100 relative p-2 h-36 mt-3'>

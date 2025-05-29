@@ -2,7 +2,7 @@ import React from 'react'
 import { BsThreeDots } from 'react-icons/bs'
 import { CiMail } from 'react-icons/ci'
 import { ownerInterface } from '../home/AllPost'
-import FollowBtn from '@/app/(layout)/post/FollowBtn'
+import FollowBtn from '@/app/components/post/FollowBtn'
 
 const UserInfo = ({user}: {user: ownerInterface}) => {
 
@@ -15,8 +15,9 @@ const UserInfo = ({user}: {user: ownerInterface}) => {
                     <div className="flex gap-6">
                         <div>
                             <img
+                                alt=""
                                 className="w-14 h-14 rounded-full lg:hidden"
-                                src={profile} alt="" />
+                                src={profile} />
                         </div>
                         <div className="flex flex-col gap-2 ">
                             <p className="font-bold text-2xl">{firstname + " " + lastname}</p>

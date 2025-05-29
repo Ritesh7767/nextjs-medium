@@ -138,7 +138,7 @@ export const createPost = async (data: FormData) => {
     const session = await sessionValidator()
     const rawData: Record<string, unknown> = {}
 
-    for(let key of data.keys()){
+    for(const key of data.keys()){
         if (key !== "image") rawData[key] = data.get(key)
     }
 
@@ -208,15 +208,15 @@ export const getTopics = async () => {
         }
     })
 
-    let topics =  new Set()
+    const topics =  new Set()
 
-    for(let ele of allPost){
+    for(const ele of allPost){
         const {topic} = ele
         topics.add(topic)
     }
-    let arr = []
+    const arr = []
 
-    for(let ele of topics){
+    for(const ele of topics){
         arr.push(ele)
     }
     return arr

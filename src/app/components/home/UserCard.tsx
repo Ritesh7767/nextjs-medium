@@ -1,11 +1,10 @@
 import React from 'react'
 import { ownerInterface } from './AllPost'
-import Image from 'next/image'
-import FollowBtn from '@/app/(layout)/post/FollowBtn'
+import FollowBtn from '@/app/components/post/FollowBtn'
 
 const UserCard = ({owner}: {owner: ownerInterface}) => {
     console.log(owner)
-    const {firstname, lastname, profile, about, _count} = owner
+    const {firstname, lastname, profile, about} = owner
   return (
     <div className='shadow-lg z-20 rounded-sm w-72 p-4 absolute bg-white -right-56'>
         <div className='flex justify-between items-center'>
@@ -15,7 +14,6 @@ const UserCard = ({owner}: {owner: ownerInterface}) => {
             </div>
             <div className='flex justify-center items-center'>
                 <FollowBtn id={owner.id} className='btn' />
-                {/* <button className='btn'>Follow</button> */}
             </div>
         </div>
         <p className='text-black/70 mt-5 tracking-tight'>{about}</p>  
