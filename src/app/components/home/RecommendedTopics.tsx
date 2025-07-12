@@ -4,7 +4,6 @@ import React from 'react'
 const RecommendedTopics = async () => {
 
   const arr = await getTopics() as string[]
-  console.log(arr)
 
   return (
     <div>

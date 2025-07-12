@@ -6,15 +6,13 @@ import { sessionValidator } from "@/lib/sessionValidator"
 export const registerComment = async ({postId, comment}: {postId: string, comment: string}) => {
 
     const session = await sessionValidator()
-    console.log(comment, postId, session.user)
-    const createdComment = await prisma.comment.create({
+    await prisma.comment.create({
         data: {
             postId,
             comment,
             userId: session.user.id
         }
     })
-    console.log(createdComment)
     return getComments(postId)  
 }
 

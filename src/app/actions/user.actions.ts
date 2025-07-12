@@ -45,8 +45,7 @@ export const register = async (data: FormData) => {
 
     if(existingUser) throw new Error("User already exists")
 
-    const user = await prisma.user.create({data: userData})
-    console.log(user)
+    await prisma.user.create({data: userData})
     redirect("/")
 }
 

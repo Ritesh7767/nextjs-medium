@@ -26,7 +26,6 @@ const DisplayComment = ({postId, displayComment, handleComment}: {postId: string
         (
             async () => {
                 const response = await getComments(postId)
-                console.log(response)
                 setCommentArr(response)
             }
         )()
@@ -39,12 +38,9 @@ const DisplayComment = ({postId, displayComment, handleComment}: {postId: string
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        console.log("clicked")
         const response = await registerComment(comment)
-        console.log(response)
         if (response) setCommentArr(response)
     }
-    console.log(comment)
   return (
         <section
             onClick={handleComment}

@@ -31,7 +31,6 @@ export interface postInterface {
 const Card = async () => {
     
     const postData = await getAllPost()
-    console.log(postData)
 
   return (
     <section className='mt-7'>

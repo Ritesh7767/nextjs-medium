@@ -3,7 +3,6 @@ import { ownerInterface } from './AllPost'
 import FollowBtn from '@/app/components/post/FollowBtn'
 
 const UserCard = ({owner}: {owner: ownerInterface}) => {
-    console.log(owner)
     const {firstname, lastname, profile, about} = owner
   return (
     <div className='shadow-lg z-20 rounded-sm w-72 p-4 absolute bg-white -right-56'>

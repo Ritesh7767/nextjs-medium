@@ -7,6 +7,7 @@ import PostCard from "../../components/home/PostCard"
 import { postInterface } from "../../components/home/AllPost"
 import UserDetails from "@/app/components/user/UserDetails"
 import Following from "@/app/components/user/Following"
+import { PageProps } from "../post/page"
 
 export interface searchParamsProps {
     searchParams: {
@@ -14,17 +15,13 @@ export interface searchParamsProps {
     }
 }
 
-export default async function page({searchParams}:searchParamsProps){
+export default async function page({searchParams}: PageProps){
 
     const {id} = await searchParams
-    console.log(typeof id)
     const user = await getUser(id)
     const userPost = await getUserPost(id) as postInterface[]
     const userFollowings = await getFollowings(id)
 
-    console.log(user)
-    console.log(userPost)
-    console.log(userFollowings)
 
     if (!user) {
         return (

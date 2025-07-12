@@ -1,6 +1,3 @@
--- CreateEnum
-CREATE TYPE "Gender" AS ENUM ('Male', 'Female', 'Others');
-
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
@@ -8,8 +5,9 @@ CREATE TABLE "User" (
     "username" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "fullname" TEXT NOT NULL,
-    "gender" "Gender" NOT NULL,
+    "firstname" TEXT NOT NULL,
+    "lastname" TEXT NOT NULL,
+    "about" TEXT NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -17,8 +15,12 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Post" (
     "id" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
+    "subtitle" TEXT NOT NULL,
+    "topic" TEXT NOT NULL,
     "content" TEXT NOT NULL,
     "image" TEXT,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "ownerId" TEXT NOT NULL,
 
     CONSTRAINT "Post_pkey" PRIMARY KEY ("id")
@@ -59,7 +61,13 @@ CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_fullname_key" ON "User"("fullname");
+CREATE UNIQUE INDEX "User_firstname_key" ON "User"("firstname");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Like_postId_userId_key" ON "Like"("postId", "userId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Follower_followerId_followingId_key" ON "Follower"("followerId", "followingId");
 
 -- AddForeignKey
 ALTER TABLE "Post" ADD CONSTRAINT "Post_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -16,26 +16,23 @@ const Signin = ({handleEmail}: {handleEmail: () => void}) => {
   const [error, setError] = useState("")
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    console.log(credentials)
     e.preventDefault()
     const result = await signIn("credentials", {
       ...credentials, 
       redirect: false,
     })  
-    console.log(result)
     if (result?.ok) router.push("/main")
 
     if (result?.error) setError(result.error)
-    console.log(error)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCredentials(prev => ({...prev, [e.target.name]: e.target.value}))
   }
 
-  console.log(credentials)
   return (
     <div className='get-container'>
+        {error && <h3>{error}</h3>}
         <h2 className='auth-title mt-36'>Sign in with email</h2>
         <div className='mt-12 text-center'>
           <form onSubmit={handleSubmit} className='w-2/5 m-auto' >

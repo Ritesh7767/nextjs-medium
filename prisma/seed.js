@@ -17,11 +17,11 @@ async function main() {
       prisma.user.create({
         data: {
           profile: faker.image.avatar(),
-          username: faker.internet.userName(),
+          username: faker.internet.username(),
           email: faker.internet.email(),
           password: faker.internet.password(), // hash in real apps
-          firstname: faker.name.firstName(),
-          lastname: faker.name.lastName(),
+          firstname: faker.person.firstName(),
+          lastname: faker.person.lastName(),
           about: faker.lorem.sentences(2),
         },
       })
@@ -41,8 +41,8 @@ async function main() {
             'Tech', 'Health', 'Business', 'Travel', 'Food', 'Lifestyle', 'Education'
           ]),
           content: Array.from({ length: 5 })
-                        .map(() => faker.lorem.words(150))
-                        .join('\n\n'),
+            .map(() => faker.lorem.words(150))
+            .join('\n\n'),
           image: faker.image.urlPicsumPhotos(),
           ownerId: user.id,
         },

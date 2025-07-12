@@ -12,14 +12,12 @@ const FollowBtn = ({className, id}: {className?: string, id: string}) => {
     (
       async () => {
         const response = await isFollowing(id)
-        console.log(response)
         if (response) setFollowing(true)
       }
     )()
   }, [])
 
   const handleClick = async () => {
-    console.log("clicked")
     let response;
     try {
       if (following){
@@ -27,11 +25,9 @@ const FollowBtn = ({className, id}: {className?: string, id: string}) => {
       } else {
         response = await follow(id)
       }
-      console.log(response)
       setFollowing(response)
-      console.log(response)
     } catch (error) {
-      console.log(error)
+      console.error(error)
       setFollowing(following)
     }
   }
